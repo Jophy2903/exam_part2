@@ -1,16 +1,9 @@
-# Use the Nginx base image
-FROM nginx:latest
+FROM nginx:alpine
 
-# Remove the default Nginx configuration
-RUN rm /etc/nginx/conf.d/default.conf
+WORKDIR /usr/share/nginx/html
 
-# Copy web pages to the Nginx default web root directory
-COPY page1.html /usr/share/nginx/html/
-COPY page2.html /usr/share/nginx/html/
-COPY page3.html /usr/share/nginx/html/
+COPY page1.html .
+COPY page2.html .
+COPY page3.html .
 
-# Expose port 80 for HTTP
-EXPOSE 80
-
-# Start Nginx server in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
